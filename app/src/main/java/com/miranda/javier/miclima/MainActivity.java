@@ -38,12 +38,21 @@ public class MainActivity extends AppCompatActivity  {
             checkPermission();
         }
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-
+        llamarWs();
     }
 
 
     @SuppressLint("MissingPermission")
     public void onRefreshLocation(View v){
+       llamarWs();
+
+
+
+    }
+
+    @SuppressLint("MissingPermission")
+    public void llamarWs(){
+
         mFusedLocationClient.getLastLocation().addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(final Location location) {
@@ -55,9 +64,6 @@ public class MainActivity extends AppCompatActivity  {
                 }
             }
         });
-
-
-
     }
 
     public class Clima extends AsyncTask<Double,Void,String>{
